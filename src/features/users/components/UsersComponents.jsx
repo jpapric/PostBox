@@ -1,38 +1,31 @@
 import { useEffect, useState } from "react";
-import getPosts from "../api/getPosts";
-import getUsers from "../../users/api/getusers";
-import { Posts } from "./Posts";
+import getUsers from "../api/getPosts";
+import { Users } from "./Users";
 import ConsoleLogger from "../../../components/Console.Logger";
 
 export function PostsContainer({ helloMessage }) {
-  const [posts, setPosts] = useState([]);
   const [users, setUsers] = useState([]);
   const [isLoading, setIsLoading] = useState(true);
   const [error, setError] = useState(null);
 
   useEffect(() => {
-    async function loadData() {
+    async function loadUsers() {
       try {
-        const [postsData, usersData] = await Promise.all([
-          getPosts(),
-          getUsers(),
-        ]);
-        setPosts(postsData);
-        setUsers(usersData);
+        const res = await getUsers();
+        setUsers(res);
       } catch (requestError) {
         setError(requestError.message);
       }
     }
 
     setIsLoading(false);
-    loadData();
+    loadUsers();
   }, []);
 
   return (
     <>
-      <ConsoleLogger message={helloMessage} componentName="PostsContainer" />
-      <Posts
-        posts={posts}
+      <ConsoleLogger message={helloMessage} componentName="UsersContainer" />
+      <Users
         users={users}
         isLoading={isLoading}
         error={error}

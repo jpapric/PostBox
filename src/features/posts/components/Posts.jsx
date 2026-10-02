@@ -1,7 +1,9 @@
 import { Alert, Card, Empty, List, Spin, Typography } from "antd";
 import ConsoleLogger from "../../../components/Console.Logger";
+import { Users } from "../../users/components/Users";
+import "../../../css/posts.css";
 
-export function Posts({ posts, isLoading, error, helloMessage }) {
+export function Posts({ posts, users, isLoading, error, helloMessage }) {
   return (
     <>
       <ConsoleLogger message={helloMessage} componentName="Posts" />
@@ -16,20 +18,35 @@ export function Posts({ posts, isLoading, error, helloMessage }) {
         />
       ) : (
         <List
+          className="posts-list"
           grid={{ gutter: 16 }}
           dataSource={posts}
-          renderItem={(post) => (
-            <List.Item>
-              <Card
-                title={
-                  <Typography.Title level={4}>{post.title}</Typography.Title>
-                }
-                hoverable
-              >
-                <Typography.Paragraph>{post.body}</Typography.Paragraph>
-              </Card>
-            </List.Item>
-          )}
+          renderItem={(post) => {
+            const user = users.find(
+              (candidate) => candidate.id === post.userId,
+            );
+
+            return (
+              <>
+                <List.Item>
+                  <Users user={user} helloMessage={helloMessage} />
+                  <Card
+                    className="post-card"
+                    title={
+                      <Typography.Title level={4} ellipsis={{ rows: 2 }}>
+                        {post.title}
+                      </Typography.Title>
+                    }
+                    hoverable
+                  >
+                    <Typography.Paragraph ellipsis={{ rows: 2 }}>
+                      {post.body}
+                    </Typography.Paragraph>
+                  </Card>
+                </List.Item>
+              </>
+            );
+          }}
         />
       )}
     </>
