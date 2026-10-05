@@ -5,7 +5,7 @@ export function Users({ user, helloMessage }) {
   return (
     <>
       <ConsoleLogger message={helloMessage} componentName="Users" />
-      <Tag color="blue">User: {user?.name ?? "Unknown user"}</Tag>
+      <Tag color="blue">{user?.name ?? "Unknown user"}</Tag>
     </>
   );
 }
