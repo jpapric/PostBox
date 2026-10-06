@@ -3,7 +3,7 @@ import getUsers from "../api/getPosts";
 import { Users } from "./Users";
 import ConsoleLogger from "../../../components/Console.Logger";
 
-export function PostsContainer({ helloMessage }) {
+export function UsersContainer({ helloMessage }) {
   const [users, setUsers] = useState([]);
   const [isLoading, setIsLoading] = useState(true);
   const [error, setError] = useState(null);
