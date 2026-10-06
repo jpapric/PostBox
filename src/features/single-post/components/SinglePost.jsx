@@ -1,7 +1,17 @@
 import ConsoleLogger from "../../../components/Console.Logger";
-import { Alert, Button, Spin, Typography, List, Divider, Card } from "antd";
-import { ArrowLeftOutlined } from "@ant-design/icons";
+import {
+  Alert,
+  Button,
+  Spin,
+  Typography,
+  List,
+  Divider,
+  Card,
+  Avatar,
+} from "antd";
+import { ArrowLeftOutlined, UserOutlined } from "@ant-design/icons";
 import { Link } from "react-router-dom";
+import { Users } from "../../users/components/Users";
 
 export function SinglePost({
   singlePostData,
@@ -39,7 +49,7 @@ export function SinglePost({
           description={error}
         />
       ) : (
-        <div style={{ maxWidth: 760, margin: "32px auto", padding: "0 16px" }}>
+        <div style={{ maxWidth: 760, margin: "25px auto", padding: "0 16px" }}>
           <>
             <Card
               style={{
@@ -48,6 +58,19 @@ export function SinglePost({
                 borderColor: "#5aaee6",
               }}
             >
+              <div>
+                <Avatar
+                  size="small"
+                  icon={<UserOutlined />}
+                  style={{
+                    margin: 5,
+                    color: "#0958D9",
+                    backgroundColor: "#E6F4FF",
+                    borderColor: "#5aaee6",
+                  }}
+                />
+                <Users user={user} helloMessage={helloMessage} />
+              </div>
               <Typography.Title level={3} style={{ marginTop: 0 }}>
                 {singlePostData.title}
               </Typography.Title>

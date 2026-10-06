@@ -1,4 +1,5 @@
-import { Alert, Card, List, Spin, Typography } from "antd";
+import { Alert, Card, List, Spin, Typography, Avatar, FloatButton } from "antd";
+import { UserOutlined } from "@ant-design/icons";
 import ConsoleLogger from "../../../components/Console.Logger";
 import { Users } from "../../users/components/Users";
 import "../../../css/posts.css";
@@ -48,6 +49,16 @@ export function Posts({ posts, users, isLoading, error, helloMessage }) {
                       className="post-card"
                       title={
                         <div>
+                          <Avatar
+                            size="small"
+                            icon={<UserOutlined />}
+                            style={{
+                              margin: 5,
+                              color: "#0958D9",
+                              backgroundColor: "#E6F4FF",
+                              borderColor: "#5aaee6",
+                            }}
+                          />
                           <Users user={user} helloMessage={helloMessage} />
                           <Typography.Title
                             level={4}
@@ -71,6 +82,7 @@ export function Posts({ posts, users, isLoading, error, helloMessage }) {
           }}
         />
       )}
+      <FloatButton.BackTop shape="circle" />
     </>
   );
 }
