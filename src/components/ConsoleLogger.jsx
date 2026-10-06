@@ -1,10 +1,8 @@
 import { useEffect } from "react";
 
-const helloMessage = "Hello from";
-
 function ConsoleLogger({ message, componentName }) {
   useEffect(() => {
-    console.log(`${helloMessage} ${componentName}`);
+    console.log(`${message} ${componentName}`);
   }, [message, componentName]);
   return null;
 }

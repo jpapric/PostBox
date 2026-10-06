@@ -1,7 +1,15 @@
-import { Alert, Card, List, Spin, Typography, Avatar, FloatButton } from "antd";
+import {
+  Alert,
+  Card,
+  List,
+  Spin,
+  Typography,
+  Avatar,
+  FloatButton,
+  Tag,
+} from "antd";
 import { UserOutlined } from "@ant-design/icons";
-import ConsoleLogger from "../../../components/Console.Logger";
-import { Users } from "../../users/components/Users";
+import ConsoleLogger from "../../../components/ConsoleLogger";
 import "../../../css/posts.css";
 import { Link } from "react-router-dom";
 
@@ -36,48 +44,47 @@ export function Posts({ posts, users, isLoading, error, helloMessage }) {
             );
 
             return (
-              <>
-                <List.Item>
-                  <Link to={`/posts/${post.id}`} className="post-card-link">
-                    <Card
-                      style={{
-                        borderRadius: "20px",
-                        color: "blue",
-                        borderColor: "#5aaee6",
-                        paddingTop: "5px",
-                      }}
-                      className="post-card"
-                      title={
-                        <div>
-                          <Avatar
-                            size="small"
-                            icon={<UserOutlined />}
-                            style={{
-                              margin: 5,
-                              color: "#0958D9",
-                              backgroundColor: "#E6F4FF",
-                              borderColor: "#5aaee6",
-                            }}
-                          />
-                          <Users user={user} helloMessage={helloMessage} />
-                          <Typography.Title
-                            level={4}
-                            ellipsis={{ rows: 2 }}
-                            style={{ margin: "3px" }}
-                          >
-                            {post.title}
-                          </Typography.Title>
-                        </div>
-                      }
-                      hoverable
-                    >
-                      <Typography.Paragraph ellipsis={{ rows: 3 }}>
-                        {post.body}
-                      </Typography.Paragraph>
-                    </Card>
-                  </Link>
-                </List.Item>
-              </>
+              <List.Item>
+                <Link to={`/posts/${post.id}`} className="post-card-link">
+                  <Card
+                    style={{
+                      borderRadius: "20px",
+                      color: "blue",
+                      borderColor: "#5aaee6",
+                      paddingTop: "5px",
+                    }}
+                    className="post-card"
+                    title={
+                      <div>
+                        <Avatar
+                          size="small"
+                          icon={<UserOutlined />}
+                          style={{
+                            margin: 5,
+                            color: "#0958D9",
+                            backgroundColor: "#E6F4FF",
+                            borderColor: "#5aaee6",
+                          }}
+                        />
+                        <Tag color="blue">{user?.name ?? "Unknown user"}</Tag>
+
+                        <Typography.Title
+                          level={4}
+                          ellipsis={{ rows: 2 }}
+                          style={{ margin: "3px" }}
+                        >
+                          {post.title}
+                        </Typography.Title>
+                      </div>
+                    }
+                    hoverable
+                  >
+                    <Typography.Paragraph ellipsis={{ rows: 3 }}>
+                      {post.body}
+                    </Typography.Paragraph>
+                  </Card>
+                </Link>
+              </List.Item>
             );
           }}
         />

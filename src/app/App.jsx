@@ -1,6 +1,6 @@
 import { createRoot } from "react-dom/client";
 import { PostsContainer } from "../features/posts/components/PostsContainer";
-import ConsoleLogger from "../components/Console.Logger";
+import ConsoleLogger from "../components/ConsoleLogger";
 import { StrictMode } from "react";
 import Header from "../components/Header";
 import { BrowserRouter } from "react-router-dom";
@@ -8,16 +8,26 @@ import { SinglePostContainer } from "../features/single-post/components/SinglePo
 import { Routes, Route } from "react-router-dom";
 
 function App() {
+  const helloMessage = "Hello from";
   return (
     <>
       <BrowserRouter>
         <StrictMode>
-          <ConsoleLogger componentName="App" />
-          <Header />
+          <ConsoleLogger message={helloMessage} componentName="App" />
+          <Header helloMessage={helloMessage} />
           <Routes>
-            <Route path="/" element={<PostsContainer />} />
-            <Route path="/posts" element={<PostsContainer />} />
-            <Route path="/posts/:postId" element={<SinglePostContainer />} />
+            <Route
+              path="/"
+              element={<PostsContainer helloMessage={helloMessage} />}
+            />
+            <Route
+              path="/posts"
+              element={<PostsContainer helloMessage={helloMessage} />}
+            />
+            <Route
+              path="/posts/:postId"
+              element={<SinglePostContainer helloMessage={helloMessage} />}
+            />
           </Routes>
         </StrictMode>
       </BrowserRouter>

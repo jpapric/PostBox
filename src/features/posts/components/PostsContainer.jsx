@@ -1,8 +1,8 @@
 import { useEffect, useMemo, useState } from "react";
 import getPosts from "../api/getPosts";
-import getUsers from "../../users/api/getUsers";
+import getUsers from "../api/getUsers";
 import { Posts } from "./Posts";
-import ConsoleLogger from "../../../components/Console.Logger";
+import ConsoleLogger from "../../../components/ConsoleLogger";
 import { Input } from "antd";
 
 export function PostsContainer({ helloMessage }) {

@@ -1,5 +1,5 @@
 import { Typography } from "antd";
-import ConsoleLogger from "./Console.Logger";
+import ConsoleLogger from "./ConsoleLogger";
 import { Link } from "react-router-dom";
 
 export default function Header({ helloMessage }) {

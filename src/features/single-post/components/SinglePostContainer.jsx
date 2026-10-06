@@ -1,14 +1,14 @@
 import { useEffect, useState } from "react";
 import getPostById from "../api/getPostById";
-import getUsers from "../../users/api/getUsers";
+import getUsers from "../../posts/api/getUsers";
 import { SinglePost } from "./SinglePost";
 import { useParams } from "react-router-dom";
-import ConsoleLogger from "../../../components/Console.Logger";
+import ConsoleLogger from "../../../components/ConsoleLogger";
 
 export function SinglePostContainer({ helloMessage }) {
   const { postId } = useParams();
   const [singlePostData, setSinglePostData] = useState();
-  const [users, setUsers] = useState([]);
+  const [usersData, setUsersData] = useState([]);
   const [isLoading, setIsLoading] = useState(true);
   const [error, setError] = useState(null);
 
@@ -17,12 +17,12 @@ export function SinglePostContainer({ helloMessage }) {
       setIsLoading(true);
 
       try {
-        const [singlePostsData, usersData] = await Promise.all([
+        const [singlePostData, usersData] = await Promise.all([
           getPostById(postId),
           getUsers(),
         ]);
-        setSinglePostData(singlePostsData);
-        setUsers(usersData);
+        setSinglePostData(singlePostData);
+        setUsersData(usersData);
       } catch (requestError) {
         setError(requestError.message);
       } finally {
@@ -37,11 +37,11 @@ export function SinglePostContainer({ helloMessage }) {
     <>
       <ConsoleLogger
         message={helloMessage}
-        componentName="SinglePost Container"
+        componentName="SinglePostContainer"
       />
       <SinglePost
         singlePostData={singlePostData}
-        users={users}
+        usersData={usersData}
         isLoading={isLoading}
         error={error}
         helloMessage={helloMessage}

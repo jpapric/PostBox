@@ -1,4 +1,4 @@
-import ConsoleLogger from "../../../components/Console.Logger";
+import ConsoleLogger from "../../../components/ConsoleLogger";
 import {
   Alert,
   Button,
@@ -8,19 +8,19 @@ import {
   Divider,
   Card,
   Avatar,
+  Tag,
 } from "antd";
 import { ArrowLeftOutlined, UserOutlined } from "@ant-design/icons";
 import { Link } from "react-router-dom";
-import { Users } from "../../users/components/Users";
 
 export function SinglePost({
   singlePostData,
-  users,
+  usersData,
   isLoading,
   error,
   helloMessage,
 }) {
-  const user = users.find(
+  const user = usersData.find(
     (candidate) => candidate.id === singlePostData?.userId,
   );
 
@@ -29,7 +29,7 @@ export function SinglePost({
     <>
       <ConsoleLogger message={helloMessage} componentName="SinglePost" />
       <Link to="/">
-        <Button icon={<ArrowLeftOutlined type="link" />}>Back to posts</Button>
+        <Button icon={<ArrowLeftOutlined />}>Back to posts</Button>
       </Link>
 
       {isLoading ? (
@@ -69,7 +69,7 @@ export function SinglePost({
                     borderColor: "#5aaee6",
                   }}
                 />
-                <Users user={user} helloMessage={helloMessage} />
+                <Tag color="blue">{user?.name ?? "Unknown user"}</Tag>
               </div>
               <Typography.Title level={3} style={{ marginTop: 0 }}>
                 {singlePostData.title}
